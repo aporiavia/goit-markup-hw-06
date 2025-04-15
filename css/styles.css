@@ -271,7 +271,36 @@ font-size: 36px;
 line-height: 1.12;
 letter-spacing: 0.02em;
 color: #2E2F42;
+display: block;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+ .mobile-nav-link::after {
+     content: '';
+     width: 100%;
+     height: 4px;
+     position: absolute;
+     left: 0;
+     bottom: -1px;
+     border-radius: 2px;
+     background-color: #404BBF;
+     opacity: 0;
+     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ .mobile-nav-link:hover,
+ .mobile-nav-link:focus,
+ .mobile-nav-link.current,
+ .mobile-contacts-link:hover,
+ .mobile-contacts-link:focus {
+     color: #404bbf;
+ }
+
+ .nav-link:hover::after,
+ .nav-link:focus::after,
+ .nav-link.current::after {
+     opacity: 1;
+ }
 
 .mobile-contacts {
     margin-bottom: 42px;
@@ -321,6 +350,7 @@ font-size: 20px;
 line-height: 1.2;
 letter-spacing: 0.02em;
 color: #434455;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mobile-menu-list-icons {
@@ -386,7 +416,7 @@ url(/images/mobile-bg.jpg);
         .section-button {
         background-image: linear-gradient(rgba(46, 47, 66, 0.7),
                 rgba(46, 47, 66, 0.7)),
-            url(/images/mobile-bg.jpg);
+            url(/images/mobile-bg@2x.jpg);
         }
     }
 
@@ -430,7 +460,7 @@ margin: 0 auto;
     max-width: 768px;
         background-image: linear-gradient(rgba(46, 47, 66, 0.7),
                 rgba(46, 47, 66, 0.7)),
-            url(/images/people-office-min.jpg);
+            url(/images/tab-bg.jpg);
             padding: 112px 0;
     }
 
@@ -439,7 +469,7 @@ margin: 0 auto;
     background-image: linear-gradient(
     rgba(46, 47, 66, 0.7),
     rgba(46, 47, 66, 0.7)),
-    url(/images/people-office-min.jpg);
+    url(/images/tab-bg@2x.jpg);
     }
 
     .button-main {
@@ -461,7 +491,7 @@ margin: 0 auto;
     background-image: linear-gradient(
     rgba(46, 47, 66, 0.7),
     rgba(46, 47, 66, 0.7)),
-    url(/images/people-office-min.jpg);
+    url(/images/desk-bg.jpg);
     padding: 188px 0;
 }
     
@@ -470,7 +500,7 @@ margin: 0 auto;
 background-image: linear-gradient(
     rgba(46, 47, 66, 0.7),
     rgba(46, 47, 66, 0.7)),
-    url(/images/people-office-min.jpg);
+    url(/images/desk-bg@2x.jpg);
 }
 }
 .button-main {
@@ -689,6 +719,15 @@ padding-bottom: 32px;
 .list-team{
 gap: 24px;
 }
+
+.team-icon-link {
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-icon-link:hover,
+.team-icon-link:focus {
+    background-color: #404bbf;
+}
 }
 
 @media screen and (min-width: 1158px) {
@@ -702,7 +741,6 @@ gap: 24px;
 flex-wrap: nowrap;  
 gap: 24px;
 }
-
 
 .team-icon-link {
 transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -751,13 +789,11 @@ gap: 48px;
 
 @media screen and (min-width: 768px) {
 .list-portfolio {
-/* width: 100%; */
 gap: 24px;
 }
 
 .list-portfolio-descript {
 width: calc((100% - 24px) / 2);
-
 }
 }
 
@@ -868,6 +904,7 @@ justify-content: center;
 }
 
 .footer-icons-text {
+    display: flex;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
@@ -903,6 +940,7 @@ margin: auto;
 } 
 
 .footer-text-right {
+    display: flex;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
@@ -967,14 +1005,19 @@ margin: auto;
 }
 
 @media screen and (min-width: 768px) {
-
-    .page-footer .container {
+.page-footer .container {
             flex-direction: row;
             flex-wrap: wrap;
             gap: 72px 24px;
             justify-content: flex-start;
             align-items: normal;
+            padding-left: 108px;
         }
+
+.logo.footer-logo {
+    display: block;
+    margin-bottom: 16px;
+}
 
 .text-footer {
     max-width: 264px;
@@ -984,6 +1027,7 @@ margin: auto;
     margin-left: 24px;
 }
 .footer-text-right {
+display: block;
 text-align: start;
 }
 .footer-input {
@@ -1007,10 +1051,17 @@ flex-direction: row;
         padding-bottom: 100px;
     }
 
-.page-footer-container {
+.page-footer .container {
     flex-wrap: nowrap;
-    justify-items: start;
+    gap: 0;
+    align-items: normal;
+    padding-left: 16px;
+}
+
+.page-footer-container {
     margin: 0 auto;
+    display: flex;
+    align-items: center;
     align-items: baseline;
 }
 
@@ -1023,6 +1074,7 @@ min-width: 264px;
 }
 
 .footer-left {
+    margin-right: 120px;
     align-self: center;
     align-items: baseline;
 }
@@ -1031,13 +1083,13 @@ min-width: 264px;
     margin-top: 0;
 }
 
-.footer-text-right {
-    text-align: start;
-}
-
 .footer-input {
 width: 264px;
 margin-bottom: 0;
+}
+
+.footer-right {
+    margin-left: 80px;
 }
 
 .footer-icons-text {
@@ -1052,6 +1104,10 @@ margin-bottom: 0;
     display: flex;
     align-items: center;
     gap: 24px;
+}
+
+.footer-button {
+    margin-left: 0;
 }
 
 .footer-button:hover,
